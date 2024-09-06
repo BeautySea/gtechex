@@ -1,0 +1,8 @@
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.jobItem {
+  display: inline-flex;
+}

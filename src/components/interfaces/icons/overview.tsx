@@ -1,0 +1,19 @@
+const OverviewIcon = () => (
+  <svg
+    // width='18'
+    // height='19'
+    // viewBox='0 0 18 19'
+    width="14"
+    height="15"
+    viewBox="0 0 18 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 10H4V19H0V10ZM14 6H18V19H14V6ZM7 0H11V19H7V0Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export default OverviewIcon;

@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+.title {
+  color: #2079c7;
+  font-family: 'Work Sans', sans-serif;
+  text-transform: uppercase;
+}
+.blocks {
+  display: flex;
+  gap: 1.3em;
+  flex-direction: column;
+}

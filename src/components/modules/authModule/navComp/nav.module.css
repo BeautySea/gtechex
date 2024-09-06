@@ -1,0 +1,44 @@
+.trapeziumNavbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+  border: 80px solid rgba(0, 0, 0, 0);
+  border-top: 0 solid;
+  border-bottom: 100px solid #131d26;
+  -webkit-border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;
+  font: normal 100% / normal Arial, Helvetica, sans-serif;
+  color: #c1c1c3;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+  margin-top: -50px;
+  min-width: 300px;
+  position: relative;
+  /* transition: all 0.7s ease; */
+  /* padding-left: 2%; */
+  /* padding-bottom: -7%; */
+}
+
+/* #trapeziumNavbar > ul > li > a, */
+.subnavbtn {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+  float: left;
+  font-size: 14px;
+  font-family: Inter;
+  color: #dcdcdf;
+
+  text-align: center;
+  padding: 14px 0;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+  letter-spacing: 2px;
+  transition: all 0.5s ease;
+  font-weight: 400;
+}

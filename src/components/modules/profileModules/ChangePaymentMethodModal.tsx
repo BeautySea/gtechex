@@ -1,0 +1,312 @@
+import { useState } from 'react';
+import BorderWrapper from '../../common/BorderWrapper';
+import CustomLabel from '../../common/Label';
+import ButtonRounded from '../../common/buttons/ButtonRounded';
+import OrdinaryCustomLabel from '../../common/OrdinaryCustomLabel';
+import { maskCreditCardNumber } from '../../../utils/utilFucntions';
+
+interface upgradeProps {
+  toggleModal: () => void;
+}
+
+interface formData {
+  cardNumber?: string;
+  expireDate?: string;
+  cvv: string;
+}
+type selectedType = 'Card' | 'Paypal' | null;
+const ChangePaymentMethodModal = ({ toggleModal }: upgradeProps) => {
+  const [selectedMethod, setSelectedMethod] = useState<selectedType>(null);
+  //   const [formState, setFormState] = useState<formData>({
+  //     cardNumber: '',
+  //     expireDate: '',
+  //     cvv: '',
+  //   });
+
+  //   const handleChange = (e: any) => {
+  //     setFormState((prevFormState) => ({
+  //       ...prevFormState,
+  //       [e.target.name]: e.target.value,
+  //     }));
+  //   };
+
+  const handleSelect = (method: selectedType) => {
+    setSelectedMethod(method);
+  };
+  return (
+    <div
+      id="popup-modal"
+      tabIndex={-1}
+      className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[#131d2680] h-screen"
+    >
+      <div className="relative  w-full max-w-lg max-h-full mx-auto">
+        <div className="relative bg-white rounded-lg shadow p-4">
+          <div className="w-full flex items-center justify-between pl-6  mx-auto ">
+            <h3 className="text-base text-[#131D26] font-semibold">
+              Change Payment Method
+            </h3>
+            <button
+              type="button"
+              onClick={toggleModal}
+              className="absolute top-3 end-8 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+            >
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span className="sr-only">Close modal</span>
+            </button>
+          </div>
+          <div className="p-4 md:p-5">
+            <BorderWrapper bg="#fff">
+              <div className="flex flex-col gap-[20px]">
+                {/* current method */}
+                <div className="flex flex-col gap-[8px]">
+                  <span className="text-xs text-[#131D26] font-semibold leading18px">
+                    Current Payment Method
+                  </span>
+                  {selectedMethod === null ? (
+                    <div className="flex items-center justify-between py-3 px-5 border border-[#131D26] rounded">
+                      <div className="flex items-center gap-[12px]">
+                        <svg
+                          width="36"
+                          height="23"
+                          viewBox="0 0 36 23"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_2105_34327)">
+                            <path
+                              d="M13.1201 2.3999H22.8443V20.0405H13.1201V2.3999Z"
+                              fill="#FF5F00"
+                            />
+                            <path
+                              d="M13.7375 11.2202C13.7375 7.636 15.4045 4.45689 17.9667 2.39981C16.0837 0.903815 13.7067 0 11.1136 0C4.97011 0 0 5.01783 0 11.2202C0 17.4224 4.97011 22.4403 11.1135 22.4403C13.7066 22.4403 16.0836 21.5365 17.9667 20.0404C15.4045 18.0145 13.7375 14.8043 13.7375 11.2202Z"
+                              fill="#EB001B"
+                            />
+                            <path
+                              d="M35.9637 11.2202C35.9637 17.4224 30.9936 22.4403 24.8503 22.4403C22.2572 22.4403 19.8802 21.5365 17.9971 20.0404C20.5902 17.9834 22.2264 14.8043 22.2264 11.2202C22.2264 7.636 20.5593 4.45689 17.9971 2.39981C19.88 0.903815 22.2572 0 24.8503 0C30.9936 0 35.9637 5.04907 35.9637 11.2202Z"
+                              fill="#F79E1B"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2105_34327">
+                              <rect width="36" height="23" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <div className="flex flex-col">
+                          <h3 className="text-sm text-[#131D26] font-semibold leading-6">
+                            Credit/Debit Card
+                          </h3>
+                          <span className="text-base text-[#131D26] font-semibold">
+                            {maskCreditCardNumber('1234-5678-9012-3456')}
+                          </span>
+                        </div>
+                      </div>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.99935 18.3334C12.3005 18.3334 14.3839 17.4007 15.8919 15.8926C17.3999 14.3846 18.3327 12.3012 18.3327 10.0001C18.3327 7.69892 17.3999 5.61558 15.8919 4.10752C14.3839 2.59949 12.3005 1.66675 9.99935 1.66675C7.69818 1.66675 5.61485 2.59949 4.10679 4.10752C2.59876 5.61558 1.66602 7.69892 1.66602 10.0001C1.66602 12.3012 2.59876 14.3846 4.10679 15.8926C5.61485 17.4007 7.69818 18.3334 9.99935 18.3334Z"
+                          fill="#131D26"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M14.7546 6.91083C15.0801 7.23626 15.0801 7.7639 14.7546 8.08934L9.75462 13.0893C9.42918 13.4148 8.90155 13.4148 8.57611 13.0893L6.07611 10.5893C5.75067 10.2639 5.75067 9.73626 6.07611 9.41083C6.40155 9.08539 6.92918 9.08539 7.25462 9.41083L9.16536 11.3216L13.5761 6.91083C13.9015 6.58539 14.4292 6.58539 14.7546 6.91083Z"
+                          fill="#F8F9FF"
+                        />
+                      </svg>
+
+                      {/* <button className="bg-[#A8A8AB33] py-2 px-3.5 flex item-center justify-center text-xs font-medium leading-5 rounded">
+                        Use this instead
+                      </button> */}
+                    </div>
+                  ) : selectedMethod === 'Card' ? (
+                    <div className="flex items-center justify-between py-3 px-5 border border-[#131D26] rounded">
+                      <div className="flex items-center gap-[12px]">
+                        <svg
+                          width="36"
+                          height="23"
+                          viewBox="0 0 36 23"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_2105_34327)">
+                            <path
+                              d="M13.1201 2.3999H22.8443V20.0405H13.1201V2.3999Z"
+                              fill="#FF5F00"
+                            />
+                            <path
+                              d="M13.7375 11.2202C13.7375 7.636 15.4045 4.45689 17.9667 2.39981C16.0837 0.903815 13.7067 0 11.1136 0C4.97011 0 0 5.01783 0 11.2202C0 17.4224 4.97011 22.4403 11.1135 22.4403C13.7066 22.4403 16.0836 21.5365 17.9667 20.0404C15.4045 18.0145 13.7375 14.8043 13.7375 11.2202Z"
+                              fill="#EB001B"
+                            />
+                            <path
+                              d="M35.9637 11.2202C35.9637 17.4224 30.9936 22.4403 24.8503 22.4403C22.2572 22.4403 19.8802 21.5365 17.9971 20.0404C20.5902 17.9834 22.2264 14.8043 22.2264 11.2202C22.2264 7.636 20.5593 4.45689 17.9971 2.39981C19.88 0.903815 22.2572 0 24.8503 0C30.9936 0 35.9637 5.04907 35.9637 11.2202Z"
+                              fill="#F79E1B"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2105_34327">
+                              <rect width="36" height="23" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <div className="flex flex-col">
+                          <h3 className="text-sm text-[#131D26] font-semibold leading-6">
+                            Credit/Debit Card
+                          </h3>
+                          <span className="text-base text-[#131D26] font-semibold">
+                            {maskCreditCardNumber('1234-5678-9012-3456')}
+                          </span>
+                        </div>
+                      </div>
+                      <button className="bg-[#A8A8AB33] py-2 px-3.5 flex item-center justify-center text-xs font-medium leading-5 rounded">
+                        Use this instead
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between py-3 px-5 border border-[#E5E6EC] rounded">
+                      <div className="flex items-center gap-[12px]">
+                        <svg
+                          width="36"
+                          height="23"
+                          viewBox="0 0 36 23"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_2105_34327)">
+                            <path
+                              d="M13.1201 2.3999H22.8443V20.0405H13.1201V2.3999Z"
+                              fill="#FF5F00"
+                            />
+                            <path
+                              d="M13.7375 11.2202C13.7375 7.636 15.4045 4.45689 17.9667 2.39981C16.0837 0.903815 13.7067 0 11.1136 0C4.97011 0 0 5.01783 0 11.2202C0 17.4224 4.97011 22.4403 11.1135 22.4403C13.7066 22.4403 16.0836 21.5365 17.9667 20.0404C15.4045 18.0145 13.7375 14.8043 13.7375 11.2202Z"
+                              fill="#EB001B"
+                            />
+                            <path
+                              d="M35.9637 11.2202C35.9637 17.4224 30.9936 22.4403 24.8503 22.4403C22.2572 22.4403 19.8802 21.5365 17.9971 20.0404C20.5902 17.9834 22.2264 14.8043 22.2264 11.2202C22.2264 7.636 20.5593 4.45689 17.9971 2.39981C19.88 0.903815 22.2572 0 24.8503 0C30.9936 0 35.9637 5.04907 35.9637 11.2202Z"
+                              fill="#F79E1B"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2105_34327">
+                              <rect width="36" height="23" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+                        <div className="flex flex-col">
+                          <h3 className="text-sm text-[#131D26] font-semibold leading-6">
+                            Credit/Debit Card
+                          </h3>
+                          <span className="text-base text-[#131D26] font-semibold">
+                            {maskCreditCardNumber('1234-5678-9012-3456')}
+                          </span>
+                        </div>
+                      </div>
+                      <button className="bg-[#A8A8AB33] py-2 px-3.5 flex item-center justify-center text-xs font-medium leading-5 rounded">
+                        Use this instead
+                      </button>
+                    </div>
+                  )}
+                </div>
+                {/* other method */}
+                <div className="flex flex-col gap-[8px]">
+                  <span className="text-xs text-[#131D26] font-semibold leading18px">
+                    Other Payment Methods
+                  </span>
+                  <div className="flex items-center justify-between py-3 px-5 border border-[#E5E6EC] rounded">
+                    <div className="flex items-center gap-[12px]">
+                      <svg
+                        width="24"
+                        height="30"
+                        viewBox="0 0 24 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_2125_34645)">
+                          <path
+                            d="M20.3601 3.04745C19.0538 1.55851 16.6924 0.920166 13.6715 0.920166H4.90404C4.60515 0.920177 4.31606 1.02681 4.08876 1.22089C3.86146 1.41498 3.71085 1.68378 3.664 1.97898L0.0133797 25.1321C-0.0591828 25.5887 0.294348 26.0021 0.757098 26.0021H6.16985L7.52922 17.3799L7.48704 17.6499C7.58388 17.0404 8.10513 16.5909 8.72238 16.5909H11.2945C16.3474 16.5909 20.304 14.5385 21.4597 8.60138C21.494 8.42579 21.5238 8.25488 21.5494 8.08792C21.4036 8.01067 21.4036 8.01067 21.5494 8.08792C21.8936 5.89351 21.5471 4.39979 20.3601 3.04745Z"
+                            fill="#27346A"
+                          />
+                          <path
+                            d="M9.60035 7.29742C9.74832 7.22696 9.91017 7.19044 10.0741 7.19054H16.9476C17.7616 7.19054 18.5208 7.24351 19.2145 7.35517C19.4086 7.38612 19.6018 7.42307 19.7936 7.46598C20.0655 7.52598 20.3343 7.59941 20.5989 7.68601C20.94 7.79992 21.2576 7.93257 21.5495 8.08792C21.8936 5.89267 21.5471 4.39979 20.3601 3.04745C19.0531 1.55851 16.6924 0.920166 13.6715 0.920166H4.90329C4.28594 0.920166 3.76075 1.3696 3.664 1.97898L0.0133802 25.1313C-0.0591823 25.5886 0.294349 26.0015 0.756349 26.0015H6.16985L8.99013 8.11679C9.01786 7.941 9.08789 7.77458 9.19419 7.63185C9.30048 7.48911 9.43987 7.37434 9.60035 7.29742Z"
+                            fill="#27346A"
+                          />
+                          <path
+                            d="M21.4591 8.60136C20.3033 14.5376 16.3469 16.5908 11.2939 16.5908H8.72099C8.10374 16.5908 7.5824 17.0404 7.48649 17.6498L5.79533 28.3706C5.73215 28.7702 6.04115 29.1322 6.4454 29.1322H11.0082C11.2696 29.1322 11.5224 29.0388 11.7211 28.8691C11.9198 28.6993 12.0514 28.4641 12.0922 28.206L12.1367 27.9735L12.9966 22.5232L13.0521 22.222C13.0929 21.9639 13.2245 21.7288 13.4232 21.559C13.6219 21.3892 13.8746 21.2959 14.136 21.2958H14.8189C19.2389 21.2958 22.6999 19.5001 23.7112 14.3067C24.1334 12.1364 23.915 10.3244 22.7982 9.05164C22.4595 8.66614 22.0388 8.34777 21.5488 8.08789C21.5223 8.2557 21.4935 8.42577 21.4591 8.60136Z"
+                            fill="#2790C3"
+                          />
+                          <path
+                            d="M20.3384 7.60565C20.1582 7.55303 19.9763 7.50644 19.793 7.46596C19.601 7.42376 19.4079 7.38706 19.2139 7.3559C18.5194 7.24349 17.7608 7.19043 16.9461 7.19043H10.0734C9.90934 7.19006 9.74737 7.22689 9.59964 7.29815C9.43898 7.37484 9.29944 7.48954 9.19309 7.63232C9.08675 7.77509 9.01681 7.94163 8.98933 8.11753L7.52852 17.3798L7.48633 17.6498C7.58242 17.0404 8.10367 16.5908 8.72102 16.5908H11.2939C16.3468 16.5908 20.3033 14.5385 21.459 8.60137C21.4934 8.42578 21.5223 8.25562 21.5488 8.0879C21.2561 7.9334 20.9394 7.7999 20.5982 7.68674C20.5121 7.65821 20.4255 7.63117 20.3385 7.60565"
+                            fill="#1F264F"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_2125_34645">
+                            <rect
+                              width="24"
+                              height="28.3125"
+                              fill="white"
+                              transform="translate(0 0.84375)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+
+                      <div className="flex flex-col">
+                        <h3 className="text-sm text-[#131D26] font-semibold leading-6">
+                          Paypal
+                        </h3>
+                        <span className="text-xs text-[#414343] font-medium leading-5">
+                          Connect your Paypal account
+                        </span>
+                      </div>
+                    </div>
+                    <button className="bg-[#A8A8AB33] py-2 px-3.5 flex item-center justify-center text-[#131D26] text-xs font-medium leading-5 rounded">
+                      Connect
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </BorderWrapper>
+            <div className="flex items-center gap-[12px]">
+              <ButtonRounded
+                type="button"
+                className="w-auto flex items-center justify-center border-0 rounded-[4px] bg-[#131D26] py-[8px] px-[12px] text-[12px] text-[#F6D155] font-medium my-[8px]"
+                text="Update"
+              />
+              <ButtonRounded
+                type="button"
+                className="w-auto flex items-center justify-center border-0 rounded-[4px] bg-[#A8A8AB33] py-[8px] px-[12px] text-[12px] text-[#131D26] font-medium my-[8px]"
+                text="Cancel"
+                onClick={toggleModal}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChangePaymentMethodModal;

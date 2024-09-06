@@ -1,0 +1,38 @@
+.label {
+  width: 100%;
+  display: flex;
+  gap: 0.3em;
+  flex-direction: column;
+}
+.label span {
+  font-size: 0.9em;
+}
+.select {
+  position: relative;
+  overflow: hidden;
+}
+.select select {
+  appearance: none;
+  width: 100%;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  border: 1px solid #9B9B9B;
+  border-radius: 0.3em;
+  margin: 0;
+  padding: 0.5em;
+  cursor: inherit;
+}
+.downArrow {
+  width: 1em;
+  height: 1em;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
