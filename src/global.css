@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  color: #5f5f5f;
+  font-family: 'Inter', sans-serif;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 12px; /* Adjust width and height to fit the SVG */
+  height: 12px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 18 18" fill="none"><path d="M11.7959 7.18209L10.7353 6.12143L3.75 13.1067V14.1674H4.81066L11.7959 7.18209ZM12.8566 6.12143L13.9172 5.06078L12.8566 4.00011L11.7959 5.06078L12.8566 6.12143ZM5.43198 15.6674H2.25V12.4854L12.3263 2.40912C12.6192 2.11623 13.094 2.11623 13.3869 2.40912L15.5083 4.53044C15.8012 4.82333 15.8012 5.29821 15.5083 5.5911L5.43198 15.6674Z" fill="%23131D26"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* padding: 5px 8px; */
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  /* text-shadow: 1px 1px #fff; */
+  /* font-weight: 700; */
+  /* font-size: 10pt; */
+}
+
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+/* otp input style */
+.otpInputStyle {
+  border: 1px solid #9b9b9b !important;
+  border-radius: 4px;
+  width: 50% !important;
+  height: 45px;
+  border: 0px;
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* antdesign table body */
+
+.ant-table-tbody > .ant-table-row:nth-child(5) {
+  /* border: 2px solid red !important; */
+}
+/* td:nth-child(5) {
+  border: 2px solid red !important;
+} */
+
+/* .Toastify__toast-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+.ant-btn:hover {
+  background-color: none !important;
+  color: none !important;
+  /* display: none; */
+}
+/* bg-cover bg-no-repeat bg-center object-fill */
+.bg-black-refer {
+  background: linear-gradient(
+      to right,
+      rgba(19, 29, 38, 0.4),
+      rgba(36, 54, 71, 0.4)
+    ),
+    url('./assets/refer-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: fill;
+  /* Additional background properties can be added here */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* #414343 */
+/* .color {
+  color: #abababe6;
+} */
+
+/* google auth */
+/* .S9gUrf-YoZ4jf {
+} */
+
+/* #gsi_860723_124952 {
+  background-color: red !important;
+} */

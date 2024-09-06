@@ -1,0 +1,17 @@
+.date {
+  font-family: 'Work Sans', sans-serif;
+  text-transform: uppercase;
+}
+.title {
+  font-size: 1.43em;
+  padding-bottom: 0.2em;
+}
+.locationAndMore {
+  font-weight: 400;
+}
+.date, .content {
+  color: #666666;
+}
+.date {
+  padding-bottom: 0.3em;
+}

@@ -1,0 +1,22 @@
+.layout {
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+.view {
+  width: 100%;
+  overflow: auto;
+  background-color: #fafafa;
+}
+
+@media (max-width: 767px) {
+  .mobileStyling {
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+}

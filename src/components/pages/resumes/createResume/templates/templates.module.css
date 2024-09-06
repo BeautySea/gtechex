@@ -1,0 +1,40 @@
+.templatesContainer {
+  flex: 1.2;
+}
+.templates {
+  /* width: 30em; */
+  display: flex;
+  gap: 1.4em;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr)); */
+}
+
+
+
+
+/* Template Card */
+.cardContainer {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+}
+.title {
+  font-weight: 300;
+}
+.image {
+  width: 10.5em;
+  height: 12.82em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

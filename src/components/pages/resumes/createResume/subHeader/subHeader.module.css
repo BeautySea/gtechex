@@ -1,0 +1,17 @@
+.subHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c5c5c5;
+  padding: 1em;
+  background-color: #fff;
+}
+.left {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+.left h4 {
+  color: #131d26;
+}
